@@ -26,7 +26,8 @@
    },
    "scripts": {
       "start": "node build/app.js",
-      "build": "tsc"
+      "postinstall": "tsc -p .",
+      "build": "tsc -p ."
    },
    "author": "",
    "license": "ISC"
