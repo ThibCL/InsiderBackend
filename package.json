@@ -25,9 +25,12 @@
       "node": "10.19.0"
    },
    "scripts": {
-      "start": "node build/app.js",
-      "postinstall": "tsc -p .",
-      "build": "tsc -p ."
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node build/app.js",
+    "watch-node": "nodemon build/app.js",
+    "watch-ts": "tsc -w"
    },
    "author": "",
    "license": "ISC"
