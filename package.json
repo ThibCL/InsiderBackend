@@ -26,10 +26,7 @@
    },
    "scripts": {
       "start": "node build/app.js",
-      "postinstall": "tsc",
-      "watch-node": "nodemon dist/index.js",
-      "watch-ts": "tsc -w",
-      "tsc": "tsc"
+      "build": "tsc"
    },
    "author": "",
    "license": "ISC"
