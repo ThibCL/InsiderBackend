@@ -25,10 +25,10 @@
       "node": "10.19.0"
    },
    "scripts": {
-    "start": "node build/app.js",
-    "postinstall": "tsc",
-    "watch-node": "nodemon dist/index.js",
-    "watch-ts": "tsc -w",
+      "start": "node build/app.js",
+      "postinstall": "tsc",
+      "watch-node": "nodemon dist/index.js",
+      "watch-ts": "tsc -w",
       "tsc": "tsc"
    },
    "author": "",
