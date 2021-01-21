@@ -7,7 +7,7 @@ var game_1 = require("./handlers/game");
 var auth_1 = require("./handlers/auth");
 var player_1 = require("./handlers/player");
 var bodyParser = require("body-parser");
-var port = 7171;
+var port = process.env.PORT;
 var app = express();
 var gameHandler = new game_1.Handler();
 var playerHandler = new player_1.Handler();
@@ -24,6 +24,6 @@ app.post("/updateGame", middleware_1.checkToken, gameHandler.updateGame);
 //Player
 app.get("/deletePlayer/:gameId/:playerId", middleware_1.checkToken, playerHandler.deletePlayer);
 app.listen(port, function () {
-    console.log("App is listening on port 7171!");
+    console.log("App is listening on port " + port);
 });
 //# sourceMappingURL=app.js.map
