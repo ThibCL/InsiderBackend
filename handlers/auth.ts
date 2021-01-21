@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken"
-import { createConnection } from "typeorm"
+import { Connection, createConnection } from "typeorm"
 import { User } from "../src/entity/User"
 import { OAuth2Client } from "google-auth-library"
 
@@ -21,12 +21,19 @@ export class Handler {
     const payload = ticket.getPayload()
     const userid = payload["sub"]
 
-    const connection = await createConnection()
-    const userRepo = connection.getRepository(User)
+    let connection: Connection
+    let user
+    try {
+      const connection = await createConnection()
+      const userRepo = connection.getRepository(User)
 
-    const user = await userRepo.findOne({ id: userid })
-    await connection.close()
-    console.log(user)
+      user = await userRepo.findOne({ id: userid })
+      console.log(user)
+    } catch (e) {
+      console.log(e)
+    } finally {
+      await connection.close()
+    }
 
     let token = ""
     if (user) {

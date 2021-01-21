@@ -4,19 +4,25 @@ import { Player } from "../src/entity/Player"
 
 export class Handler {
   getGame = async (req, res) => {
-    const connection = await createConnection()
-    const gameRepo = connection.getRepository(Game)
+    let connection: Connection
+    try {
+      connection = await createConnection()
+      const gameRepo = connection.getRepository(Game)
 
-    let id = req.params.gameId
-    console.log(id)
-    const game = await gameRepo
-      .createQueryBuilder("game")
-      .where({ user: req.body.decoded.id, id: id })
-      .leftJoinAndSelect("game.players", "player")
-      .getOne()
-    await connection.close()
+      let id = req.params.gameId
+      console.log(id)
+      const game = await gameRepo
+        .createQueryBuilder("game")
+        .where({ user: req.body.decoded.id, id: id })
+        .leftJoinAndSelect("game.players", "player")
+        .getOne()
 
-    res.send(JSON.stringify({ game }))
+      res.send(JSON.stringify({ game }))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      await connection.close()
+    }
   }
 
   listGames = async (req, res) => {
@@ -61,33 +67,43 @@ export class Handler {
   }
 
   updateGame = async (req, res) => {
-    const connection = await createConnection()
+    let connection: Connection
+    try {
+      connection = await createConnection()
 
-    const gameRepo = connection.getRepository(Game)
-    let game = req.body.game
-    game.user = { id: req.body.decoded.id }
-    await gameRepo.save(game)
+      const gameRepo = connection.getRepository(Game)
+      let game = req.body.game
+      game.user = { id: req.body.decoded.id }
+      await gameRepo.save(game)
 
-    await connection.close()
-
-    res.send()
+      res.send()
+    } catch (e) {
+      console.log(e)
+    } finally {
+      await connection.close()
+    }
   }
 
   deleteGame = async (req, res) => {
-    const connection = await createConnection()
+    let connection: Connection
+    try {
+      connection = await createConnection()
 
-    const playerRepo = connection.getRepository(Player)
-    await playerRepo.delete({ game: { id: req.params.gameId } })
+      const playerRepo = connection.getRepository(Player)
+      await playerRepo.delete({ game: { id: req.params.gameId } })
 
-    const gameRepo = connection.getRepository(Game)
-    console.log(req.body.decoded.id)
-    await gameRepo.delete({
-      id: req.params.gameId,
-      user: req.body.decoded.id,
-    })
+      const gameRepo = connection.getRepository(Game)
+      console.log(req.body.decoded.id)
+      await gameRepo.delete({
+        id: req.params.gameId,
+        user: req.body.decoded.id,
+      })
 
-    await connection.close()
-
-    res.send()
+      res.send()
+    } catch (e) {
+      console.log(e)
+    } finally {
+      await connection.close()
+    }
   }
 }
