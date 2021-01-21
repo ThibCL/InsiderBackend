@@ -18,6 +18,7 @@ export class Handler {
         "578157949333-gdsu9a0325a42eiqf5mqt042gijhim3v.apps.googleusercontent.com",
       ],
     })
+    console.log("verified")
     const payload = ticket.getPayload()
     const userid = payload["sub"]
 
