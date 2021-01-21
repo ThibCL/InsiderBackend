@@ -7,7 +7,7 @@ import { Handler as PlayerHandler } from "./handlers/player"
 
 const bodyParser = require("body-parser")
 
-const port = process.env.PORT || 7171
+const port = process.env.PORT
 const app: express.Application = express()
 const gameHandler = new GameHandler()
 const playerHandler = new PlayerHandler()
