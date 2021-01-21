@@ -7,7 +7,7 @@ import { Handler as PlayerHandler } from "./handlers/player"
 
 const bodyParser = require("body-parser")
 
-const port = 7171
+const port = process.env.PORT || 7171
 const app: express.Application = express()
 const gameHandler = new GameHandler()
 const playerHandler = new PlayerHandler()
@@ -33,6 +33,6 @@ app.get(
   checkToken,
   playerHandler.deletePlayer
 )
-app.listen(process.env.PORT || port, function () {
-  console.log("App is listening on port 7171!")
+app.listen(port, function () {
+  console.log("App is listening on port " + port)
 })
