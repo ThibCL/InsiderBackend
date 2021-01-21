@@ -5,7 +5,7 @@
    "synchronize": false,
    "logging": false,
    "entities": [
-      "build/src/entity/**/*.js"
+      "src/entity/**/*.js"
    ],
    "migrations": [
       "src/migration/**/*.ts"
