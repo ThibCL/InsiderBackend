@@ -1,6 +1,7 @@
 import jwt = require("jsonwebtoken")
 
 export const checkToken = (req, res, next) => {
+  console.log("Check token")
   let token: string =
     req.headers["x-access-token"] || req.headers["authorization"] // Express headers are auto converted to lowercase
   if (token.startsWith("Bearer ")) {
