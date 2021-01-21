@@ -33,6 +33,6 @@ app.get(
   checkToken,
   playerHandler.deletePlayer
 )
-app.listen(port, function () {
+app.listen(process.env.PORT || port, function () {
   console.log("App is listening on port 7171!")
 })
