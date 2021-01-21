@@ -24,7 +24,7 @@ export class Handler {
     let connection: Connection
     let user
     try {
-      const connection = await createConnection()
+      connection = await createConnection()
       const userRepo = connection.getRepository(User)
 
       user = await userRepo.findOne({ id: userid })
