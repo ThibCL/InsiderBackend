@@ -42,10 +42,12 @@ var Handler = /** @class */ (function () {
     function Handler() {
         var _this = this;
         this.deletePlayer = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, playerRepo, gameId, playerId;
+            var connection, playerRepo, gameId, playerId, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.createConnection()];
+                    case 0:
+                        _a.trys.push([0, 3, 4, 6]);
+                        return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
                         playerRepo = connection.getRepository(Player_1.Player);
@@ -59,9 +61,16 @@ var Handler = /** @class */ (function () {
                             })];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, connection.close()];
+                        return [3 /*break*/, 6];
                     case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, connection.close()];
+                    case 5:
                         _a.sent();
+                        return [7 /*endfinally*/];
+                    case 6:
                         res.send();
                         return [2 /*return*/];
                 }

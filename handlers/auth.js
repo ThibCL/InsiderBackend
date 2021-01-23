@@ -44,7 +44,7 @@ var Handler = /** @class */ (function () {
     function Handler(clientId) {
         var _this = this;
         this.login = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var ticket, payload, userid, connection, userRepo, user, token;
+            var ticket, payload, userid, connection, user, userRepo, e_1, token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.client.verifyIdToken({
@@ -56,19 +56,30 @@ var Handler = /** @class */ (function () {
                         })];
                     case 1:
                         ticket = _a.sent();
+                        console.log("verified");
                         payload = ticket.getPayload();
                         userid = payload["sub"];
-                        return [4 /*yield*/, typeorm_1.createConnection()];
+                        _a.label = 2;
                     case 2:
+                        _a.trys.push([2, 5, 6, 8]);
+                        return [4 /*yield*/, typeorm_1.createConnection()];
+                    case 3:
                         connection = _a.sent();
                         userRepo = connection.getRepository(User_1.User);
                         return [4 /*yield*/, userRepo.findOne({ id: userid })];
-                    case 3:
-                        user = _a.sent();
-                        return [4 /*yield*/, connection.close()];
                     case 4:
-                        _a.sent();
+                        user = _a.sent();
                         console.log(user);
+                        return [3 /*break*/, 8];
+                    case 5:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, connection.close()];
+                    case 7:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 8:
                         token = "";
                         if (user) {
                             token = jsonwebtoken_1.sign({ id: payload["sub"] }, "secret", {

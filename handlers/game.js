@@ -43,10 +43,12 @@ var Handler = /** @class */ (function () {
     function Handler() {
         var _this = this;
         this.getGame = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, gameRepo, id, game;
+            var connection, gameRepo, id, game, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.createConnection()];
+                    case 0:
+                        _a.trys.push([0, 3, 4, 6]);
+                        return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
                         gameRepo = connection.getRepository(Game_1.Game);
@@ -59,16 +61,22 @@ var Handler = /** @class */ (function () {
                                 .getOne()];
                     case 2:
                         game = _a.sent();
-                        return [4 /*yield*/, connection.close()];
-                    case 3:
-                        _a.sent();
                         res.send(JSON.stringify({ game: game }));
-                        return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log(e_1);
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, connection.close()];
+                    case 5:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 6: return [2 /*return*/];
                 }
             });
         }); };
         this.listGames = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, gameRepo, listGames, e_1;
+            var connection, gameRepo, listGames, e_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -87,8 +95,8 @@ var Handler = /** @class */ (function () {
                         res.send(JSON.stringify({ listGames: listGames }));
                         return [3 /*break*/, 6];
                     case 3:
-                        e_1 = _a.sent();
-                        console.log(e_1);
+                        e_2 = _a.sent();
+                        console.log(e_2);
                         return [3 /*break*/, 6];
                     case 4: return [4 /*yield*/, connection.close()];
                     case 5:
@@ -99,7 +107,7 @@ var Handler = /** @class */ (function () {
             });
         }); };
         this.addGame = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, gameRepo, game, e_2;
+            var connection, gameRepo, game, e_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -118,8 +126,8 @@ var Handler = /** @class */ (function () {
                         res.send(JSON.stringify({ game: game }));
                         return [3 /*break*/, 6];
                     case 3:
-                        e_2 = _a.sent();
-                        console.log(e_2);
+                        e_3 = _a.sent();
+                        console.log(e_3);
                         res.send();
                         return [3 /*break*/, 6];
                     case 4: return [4 /*yield*/, connection.close()];
@@ -131,10 +139,12 @@ var Handler = /** @class */ (function () {
             });
         }); };
         this.updateGame = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, gameRepo, game;
+            var connection, gameRepo, game, e_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.createConnection()];
+                    case 0:
+                        _a.trys.push([0, 3, 4, 6]);
+                        return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
                         gameRepo = connection.getRepository(Game_1.Game);
@@ -143,19 +153,27 @@ var Handler = /** @class */ (function () {
                         return [4 /*yield*/, gameRepo.save(game)];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, connection.close()];
-                    case 3:
-                        _a.sent();
                         res.send();
-                        return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 3:
+                        e_4 = _a.sent();
+                        console.log(e_4);
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, connection.close()];
+                    case 5:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 6: return [2 /*return*/];
                 }
             });
         }); };
         this.deleteGame = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, playerRepo, gameRepo;
+            var connection, playerRepo, gameRepo, e_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, typeorm_1.createConnection()];
+                    case 0:
+                        _a.trys.push([0, 4, 5, 7]);
+                        return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
                         playerRepo = connection.getRepository(Player_1.Player);
@@ -170,11 +188,17 @@ var Handler = /** @class */ (function () {
                             })];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, connection.close()];
-                    case 4:
-                        _a.sent();
                         res.send();
-                        return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 4:
+                        e_5 = _a.sent();
+                        console.log(e_5);
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, connection.close()];
+                    case 6:
+                        _a.sent();
+                        return [7 /*endfinally*/];
+                    case 7: return [2 /*return*/];
                 }
             });
         }); };
