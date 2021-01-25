@@ -2,7 +2,7 @@
    "type": "postgres",
    "name": "default",
    "url": "postgres://vddlbtquuuxlij:26a6960490cb8b921c491ecf7bf983bf143dc99f49818b0855c164ba8451543d@ec2-54-155-99-116.eu-west-1.compute.amazonaws.com:5432/d2btt26c7hbjdf",
-   "synchronize": false,
+   "synchronize": true,
    "logging": false,
    "entities": [
       "src/entity/**/*.js"
