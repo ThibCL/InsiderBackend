@@ -13,6 +13,9 @@ export class Game {
   @PrimaryGeneratedColumn()
   id: number
 
+  @Column()
+  name: string
+
   @OneToMany(() => Player, (player) => player.game, { cascade: true })
   players: Player[]
 
