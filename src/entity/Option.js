@@ -20,6 +20,7 @@ var Option = /** @class */ (function () {
     ], Option.prototype, "id", void 0);
     __decorate([
         typeorm_1.OneToOne(function () { return User_1.User; }, { nullable: true }),
+        typeorm_1.JoinColumn(),
         __metadata("design:type", Number)
     ], Option.prototype, "user", void 0);
     __decorate([
