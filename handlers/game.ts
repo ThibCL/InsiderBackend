@@ -96,8 +96,11 @@ export class Handler {
       await playerRepo.delete({ game: { id: req.params.gameId } })
 
       const gameRepo = connection.getRepository(Game)
-      const game = await gameRepo.findOne({ id: req.params.gameId })
-      console.log(game)
+      const game = await gameRepo
+        .createQueryBuilder("game")
+        .where({ id: req.params.gameId })
+        .leftJoinAndSelect("game.option", "option")
+        .getOne()
       await gameRepo.delete({
         id: req.params.gameId,
         user: req.body.decoded.id,

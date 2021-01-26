@@ -184,10 +184,13 @@ var Handler = /** @class */ (function () {
                     case 2:
                         _a.sent();
                         gameRepo = connection.getRepository(Game_1.Game);
-                        return [4 /*yield*/, gameRepo.findOne({ id: req.params.gameId })];
+                        return [4 /*yield*/, gameRepo
+                                .createQueryBuilder("game")
+                                .where({ id: req.params.gameId })
+                                .leftJoinAndSelect("game.option", "option")
+                                .getOne()];
                     case 3:
                         game = _a.sent();
-                        console.log(game);
                         return [4 /*yield*/, gameRepo.delete({
                                 id: req.params.gameId,
                                 user: req.body.decoded.id,
