@@ -91,6 +91,7 @@ var Handler = /** @class */ (function () {
                                 .createQueryBuilder("game")
                                 .where({ user: req.body.decoded.id })
                                 .leftJoinAndSelect("game.players", "player")
+                                .leftJoinAndSelect("game.option", "option")
                                 .getMany()];
                     case 2:
                         listGames = _a.sent();

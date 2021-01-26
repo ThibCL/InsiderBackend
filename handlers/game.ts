@@ -37,6 +37,7 @@ export class Handler {
         .createQueryBuilder("game")
         .where({ user: req.body.decoded.id })
         .leftJoinAndSelect("game.players", "player")
+        .leftJoinAndSelect("game.option", "option")
         .getMany()
       res.send(JSON.stringify({ listGames: listGames }))
     } catch (e) {
