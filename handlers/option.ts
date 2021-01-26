@@ -26,7 +26,7 @@ export class Handler {
       console.log(req.body)
       let option: Option = req.body.option
       option.user = req.body.decoded.id
-      optionRepo.save(option)
+      await optionRepo.save(option)
 
       res.send()
     } catch (e) {

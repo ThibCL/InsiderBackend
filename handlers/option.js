@@ -74,7 +74,7 @@ var Handler = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, 3, 5]);
+                        _a.trys.push([0, 3, 4, 6]);
                         return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
@@ -82,19 +82,21 @@ var Handler = /** @class */ (function () {
                         console.log(req.body);
                         option = req.body.option;
                         option.user = req.body.decoded.id;
-                        optionRepo.save(option);
-                        res.send();
-                        return [3 /*break*/, 5];
+                        return [4 /*yield*/, optionRepo.save(option)];
                     case 2:
+                        _a.sent();
+                        res.send();
+                        return [3 /*break*/, 6];
+                    case 3:
                         e_2 = _a.sent();
                         console.log(e_2);
                         res.send();
-                        return [3 /*break*/, 5];
-                    case 3: return [4 /*yield*/, connection.close()];
-                    case 4:
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, connection.close()];
+                    case 5:
                         _a.sent();
                         return [7 /*endfinally*/];
-                    case 5: return [2 /*return*/];
+                    case 6: return [2 /*return*/];
                 }
             });
         }); };
