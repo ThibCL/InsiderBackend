@@ -79,6 +79,7 @@ var Handler = /** @class */ (function () {
                     case 1:
                         connection = _a.sent();
                         optionRepo = connection.getRepository(Option_1.Option);
+                        console.log(req.body);
                         option = req.body.option;
                         option.user = req.body.decoded.id;
                         optionRepo.save(option);
