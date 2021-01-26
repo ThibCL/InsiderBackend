@@ -187,6 +187,7 @@ var Handler = /** @class */ (function () {
                         return [4 /*yield*/, gameRepo.findOne({ id: req.params.gameId })];
                     case 3:
                         game = _a.sent();
+                        console.log(game);
                         return [4 /*yield*/, gameRepo.delete({
                                 id: req.params.gameId,
                                 user: req.body.decoded.id,

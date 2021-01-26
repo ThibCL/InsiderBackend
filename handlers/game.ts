@@ -97,6 +97,7 @@ export class Handler {
 
       const gameRepo = connection.getRepository(Game)
       const game = await gameRepo.findOne({ id: req.params.gameId })
+      console.log(game)
       await gameRepo.delete({
         id: req.params.gameId,
         user: req.body.decoded.id,
