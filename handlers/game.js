@@ -184,16 +184,15 @@ var Handler = /** @class */ (function () {
                     case 2:
                         _a.sent();
                         gameRepo = connection.getRepository(Game_1.Game);
-                        console.log(req.body.decoded.id);
+                        return [4 /*yield*/, gameRepo.findOne({ id: req.params.gameId })];
+                    case 3:
+                        game = _a.sent();
                         return [4 /*yield*/, gameRepo.delete({
                                 id: req.params.gameId,
                                 user: req.body.decoded.id,
                             })];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, gameRepo.findOne({ id: req.params.gameId })];
                     case 4:
-                        game = _a.sent();
+                        _a.sent();
                         optionRepo = connection.getRepository(Option_1.Option);
                         return [4 /*yield*/, optionRepo.delete({ id: game.option.id })];
                     case 5:
