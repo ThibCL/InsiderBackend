@@ -4,6 +4,7 @@ import { checkToken } from "./middleware"
 import { Handler as GameHandler } from "./handlers/game"
 import { Handler as AuthHandler } from "./handlers/auth"
 import { Handler as PlayerHandler } from "./handlers/player"
+import { Handler as OptionHandler } from "./handlers/option"
 
 const bodyParser = require("body-parser")
 
@@ -11,6 +12,7 @@ const port = process.env.PORT || 7171
 const app: express.Application = express()
 const gameHandler = new GameHandler()
 const playerHandler = new PlayerHandler()
+const optionHandler = new OptionHandler()
 const authHandler = new AuthHandler(
   "578157949333-gdsu9a0325a42eiqf5mqt042gijhim3v.apps.googleusercontent.com"
 )
@@ -33,6 +35,11 @@ app.get(
   checkToken,
   playerHandler.deletePlayer
 )
+
+//Option
+app.get("/defaultOption", checkToken, optionHandler.getDefault)
+
+app.post("/saveDefaultOption", checkToken, optionHandler.saveDefault)
 app.listen(port, function () {
   console.log("App is listening on port " + port)
 })

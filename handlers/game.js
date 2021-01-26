@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
 var Game_1 = require("../src/entity/Game");
+var Option_1 = require("../src/entity/Option");
 var Player_1 = require("../src/entity/Player");
 var Handler = /** @class */ (function () {
     function Handler() {
@@ -58,6 +59,7 @@ var Handler = /** @class */ (function () {
                                 .createQueryBuilder("game")
                                 .where({ user: req.body.decoded.id, id: id })
                                 .leftJoinAndSelect("game.players", "player")
+                                .leftJoinAndSelect("game.option", "option")
                                 .getOne()];
                     case 2:
                         game = _a.sent();
@@ -168,11 +170,11 @@ var Handler = /** @class */ (function () {
             });
         }); };
         this.deleteGame = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-            var connection, playerRepo, gameRepo, e_5;
+            var connection, playerRepo, gameRepo, game, optionRepo, e_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, 5, 7]);
+                        _a.trys.push([0, 6, 7, 9]);
                         return [4 /*yield*/, typeorm_1.createConnection()];
                     case 1:
                         connection = _a.sent();
@@ -188,17 +190,24 @@ var Handler = /** @class */ (function () {
                             })];
                     case 3:
                         _a.sent();
-                        res.send();
-                        return [3 /*break*/, 7];
+                        return [4 /*yield*/, gameRepo.findOne({ id: req.params.gameId })];
                     case 4:
+                        game = _a.sent();
+                        optionRepo = connection.getRepository(Option_1.Option);
+                        return [4 /*yield*/, optionRepo.delete({ id: game.option.id })];
+                    case 5:
+                        _a.sent();
+                        res.send();
+                        return [3 /*break*/, 9];
+                    case 6:
                         e_5 = _a.sent();
                         console.log(e_5);
-                        return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, connection.close()];
-                    case 6:
+                        return [3 /*break*/, 9];
+                    case 7: return [4 /*yield*/, connection.close()];
+                    case 8:
                         _a.sent();
                         return [7 /*endfinally*/];
-                    case 7: return [2 /*return*/];
+                    case 9: return [2 /*return*/];
                 }
             });
         }); };

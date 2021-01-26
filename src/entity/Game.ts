@@ -4,9 +4,12 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  OneToOne,
+  JoinColumn,
 } from "typeorm"
 import { Player } from "./Player"
 import { User } from "./User"
+import { Option } from "./Option"
 
 @Entity()
 export class Game {
@@ -21,4 +24,8 @@ export class Game {
 
   @ManyToOne(() => User, (user) => user.games)
   user: User
+
+  @OneToOne(() => Option, { cascade: true })
+  @JoinColumn()
+  option: Option
 }

@@ -10,37 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var Player_1 = require("./Player");
 var User_1 = require("./User");
-var Option_1 = require("./Option");
-var Game = /** @class */ (function () {
-    function Game() {
+var Option = /** @class */ (function () {
+    function Option() {
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], Game.prototype, "id", void 0);
+    ], Option.prototype, "id", void 0);
+    __decorate([
+        typeorm_1.OneToOne(function () { return User_1.User; }, { nullable: true }),
+        __metadata("design:type", Number)
+    ], Option.prototype, "user", void 0);
     __decorate([
         typeorm_1.Column(),
-        __metadata("design:type", String)
-    ], Game.prototype, "name", void 0);
+        __metadata("design:type", Number)
+    ], Option.prototype, "number_choices", void 0);
     __decorate([
-        typeorm_1.OneToMany(function () { return Player_1.Player; }, function (player) { return player.game; }, { cascade: true }),
-        __metadata("design:type", Array)
-    ], Game.prototype, "players", void 0);
+        typeorm_1.Column(),
+        __metadata("design:type", Boolean)
+    ], Option.prototype, "vote_anyway", void 0);
     __decorate([
-        typeorm_1.ManyToOne(function () { return User_1.User; }, function (user) { return user.games; }),
-        __metadata("design:type", User_1.User)
-    ], Game.prototype, "user", void 0);
-    __decorate([
-        typeorm_1.OneToOne(function () { return Option_1.Option; }, { cascade: true }),
-        typeorm_1.JoinColumn(),
-        __metadata("design:type", Option_1.Option)
-    ], Game.prototype, "option", void 0);
-    Game = __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Option.prototype, "time", void 0);
+    Option = __decorate([
         typeorm_1.Entity()
-    ], Game);
-    return Game;
+    ], Option);
+    return Option;
 }());
-exports.Game = Game;
-//# sourceMappingURL=Game.js.map
+exports.Option = Option;
+//# sourceMappingURL=Option.js.map

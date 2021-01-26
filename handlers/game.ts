@@ -1,5 +1,6 @@
 import { Connection, createConnection } from "typeorm"
 import { Game } from "../src/entity/Game"
+import { Option } from "../src/entity/Option"
 import { Player } from "../src/entity/Player"
 
 export class Handler {
@@ -15,6 +16,7 @@ export class Handler {
         .createQueryBuilder("game")
         .where({ user: req.body.decoded.id, id: id })
         .leftJoinAndSelect("game.players", "player")
+        .leftJoinAndSelect("game.option", "option")
         .getOne()
 
       res.send(JSON.stringify({ game }))
@@ -98,6 +100,10 @@ export class Handler {
         id: req.params.gameId,
         user: req.body.decoded.id,
       })
+
+      const game = await gameRepo.findOne({ id: req.params.gameId })
+      const optionRepo = connection.getRepository(Option)
+      await optionRepo.delete({ id: game.option.id })
 
       res.send()
     } catch (e) {
