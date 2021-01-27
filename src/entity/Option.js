@@ -35,6 +35,10 @@ var Option = /** @class */ (function () {
         typeorm_1.Column(),
         __metadata("design:type", Number)
     ], Option.prototype, "time", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Option.prototype, "score_limit", void 0);
     Option = __decorate([
         typeorm_1.Entity()
     ], Option);

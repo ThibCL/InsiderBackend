@@ -24,4 +24,7 @@ export class Option {
 
   @Column()
   time: number
+
+  @Column()
+  score_limit: number
 }
