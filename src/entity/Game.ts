@@ -19,6 +19,9 @@ export class Game {
   @Column()
   name: string
 
+  @Column()
+  finished: boolean
+
   @OneToMany(() => Player, (player) => player.game, { cascade: true })
   players: Player[]
 

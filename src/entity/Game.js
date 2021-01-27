@@ -25,6 +25,10 @@ var Game = /** @class */ (function () {
         __metadata("design:type", String)
     ], Game.prototype, "name", void 0);
     __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Boolean)
+    ], Game.prototype, "finished", void 0);
+    __decorate([
         typeorm_1.OneToMany(function () { return Player_1.Player; }, function (player) { return player.game; }, { cascade: true }),
         __metadata("design:type", Array)
     ], Game.prototype, "players", void 0);
