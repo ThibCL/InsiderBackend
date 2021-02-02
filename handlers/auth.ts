@@ -21,6 +21,8 @@ export class Handler {
     console.log("verified")
     const payload = ticket.getPayload()
     const userid = payload["sub"]
+    console.log(payload)
+    console.log(userid)
 
     let connection: Connection
     let user

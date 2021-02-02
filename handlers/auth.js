@@ -59,6 +59,8 @@ var Handler = /** @class */ (function () {
                         console.log("verified");
                         payload = ticket.getPayload();
                         userid = payload["sub"];
+                        console.log(payload);
+                        console.log(userid);
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 5, 6, 8]);
